@@ -15,24 +15,33 @@ uint32_t mult_simple(void)
     .globl mult_simple
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    mult_simple : feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    x : memoire
+    y : memoire
+    res : memoire
 FIN DU CONTEXTE */
 mult_simple:
 mult_simple_fin_prologue:
 /* A compléter */
+    sw zero, res, t3
+while:
+    lw t2, y
+    beqz t2, endwhile
+    lw t0, res
+    lw t1, x
+    add t0, t0, t1
+    sw t0, res, t3
+    addi t2, t2, -1
+    sw t2, y, t3
+    j while
+endwhile:
+    lw a0, res
 mult_simple_debut_epilogue:
     ret
 
 
     .data
+    .globl res
+    .comm res, 4
 /* uint32_t res; */

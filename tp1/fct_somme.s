@@ -23,9 +23,9 @@ somme_fin_prologue:
 /* A compléter */
     li t0, 0
     li t1, 1
-    li t2, 11
 loop:
-    beq t1, t2, endloop
+    slti t2, t1, 11
+    beqz t2, endloop
     add t0, t0, t1
     addi t1, t1, 1
     j loop

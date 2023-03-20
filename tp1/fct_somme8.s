@@ -26,8 +26,8 @@ somme8_fin_prologue:
     sw zero, res8, t2
     li t0, 1
 loop:
-    slti t2, t0, 31
-    beqz t2, endloop
+    slti t1, t0, 31
+    beqz t1, endloop
     lw t1, res8
     add t1, t1, t0
     sw t1, res8, t2

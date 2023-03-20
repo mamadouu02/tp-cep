@@ -23,18 +23,18 @@ FIN DU CONTEXTE */
 somme8:
 somme8_fin_prologue:
 /* A compléter */
-    sw zero, res, t2
+    sw zero, res8, t2
     li t0, 1
 loop:
     slti t2, t0, 31
     beqz t2, endloop
-    lw t1, res
+    lw t1, res8
     add t1, t1, t0
-    sw t1, res, t2
+    sw t1, res8, t2
     addi t0, t0, 1
     j loop
 endloop:
-    lw a0, res
+    lw a0, res8
 somme8_debut_epilogue:
     ret
 

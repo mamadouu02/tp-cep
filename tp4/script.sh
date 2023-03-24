@@ -30,7 +30,7 @@ then
     qemu-system-riscv32 -machine cep -bios none -nographic -kernel $1 > test/$1.sortie
     ../common/verif_etud.sh
 else
-    echo -e "\n${PURPLE}===============${NC}"
+    echo -e "\n${PURPLE}====================${NC}\n"
     exit 0
 fi
 
@@ -49,7 +49,7 @@ then
     git commit -m "$1"
     git push
 else
-    echo -e "\n${PURPLE}===============${NC}"
+    echo -e "\n${PURPLE}====================${NC}\n"
     exit 0
 fi
 

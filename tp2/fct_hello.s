@@ -21,10 +21,10 @@ FIN DU CONTEXTE */
 hello:
 /* A compléter */
     addi sp, sp, -4
-hello_fin_prologue:
     sw ra, 0(sp)
+hello_fin_prologue:
     jal affiche_HelloWorld
-    lw ra, 0(sp)
 hello_debut_epilogue:
+    lw ra, 0(sp)
     addi sp, sp, 4
     ret

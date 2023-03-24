@@ -53,5 +53,5 @@ else
     exit 0
 fi
 
-echo -e "\n${PURPLE}===============${NC}"
+echo -e "\n${PURPLE}====================${NC}\n"
 exit 0

@@ -1,17 +1,20 @@
 #!/bin/bash
 
+PURPLE='\033[0;35m'
+NC='\033[0m'
+
 if [ $# -ne 1 ]
 then
     echo "usage: $0 fonction"
     exit 1
 fi
 
-echo -e "\n========== Fonction $1 =========="
+echo -e "\n${PURPLE}===== Fonction $1 =====${NC}"
 
-echo -e "\n----- Génération de l'exécutable -----\n"
+echo -e "\n${PURPLE}===== Génération de l'exécutable =====${NC}\n"
 make $1
 
-echo -e "\n----- Exécution du programme $1 -----\n"
+echo -e "\n${PURPLE}===== Exécution du programme $1 =====${NC}\n"
 qemu-system-riscv32 -machine cep -bios none -nographic -kernel $1
 
 echo
@@ -23,11 +26,11 @@ done
 
 if [ $input = o ]
 then
-    echo -e "\n----- Redirection de la sortie -----\n"
+    echo -e "\n${PURPLE}===== Redirection de la sortie =====${NC}\n"
     qemu-system-riscv32 -machine cep -bios none -nographic -kernel $1 > test/$1.sortie
     ../common/verif_etud.sh
 else
-    echo -e "\n========================================\n"
+    echo -e "\n${PURPLE}===============${NC}"
     exit 0
 fi
 
@@ -40,15 +43,15 @@ done
 
 if [ $input = o ]
 then
-    echo -e "\n----- Mise à jour du dépot distant -----\n"
+    echo -e "\n${PURPLE}===== Mise à jour du dépot distant =====${NC}\n"
     git add fct_$1.s
     git add test/$1.sortie
     git commit -m "$1"
     git push
 else
-    echo -e "\n========================================\n"
+    echo -e "\n${PURPLE}===============${NC}"
     exit 0
 fi
 
-echo -e "\n========================================\n"
+echo -e "\n${PURPLE}===============${NC}"
 exit 0

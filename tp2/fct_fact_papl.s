@@ -17,20 +17,34 @@ uint32_t fact_papl(uint32_t n)
     /* uint32_t fact_papl(uint32_t n) */
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    fact_papl : non feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    n  : registre a0; pile *(sp+0)
+    tmp  : pile *(sp+4) / *(sp+8)
+    ra  : pile *(sp+12)
 FIN DU CONTEXTE */
 fact_papl:
 /* A compléter */
+    addi sp, sp, -16
+    sw ra, 12(sp)
+    sw a0, 0(sp)
 fact_papl_fin_prologue:
+    slti t0, a0, 2
+    beqz t0, recursion
+    li a0, 1
+    j fact_debut_epilogue
+recursion:
+    addi a0, a0, -1
+    jal fact_papl
+    lw t2, 0(sp)
+    mulhu t1, t2, a0
+    mul t0, t2, a0
+if:
+    bnez t0, endif
+    j erreur_fact
+endif:
+    mv a0, t0
 fact_papl_debut_epilogue:
+    lw ra, 12(sp)
+    addi sp, sp, 16
     ret

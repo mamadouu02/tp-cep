@@ -40,7 +40,7 @@ recursion:
     mulhu t1, t2, a0
     mul t0, t2, a0
 if:
-    bnez t0, endif
+    bnez t1, endif
     j erreur_fact
 endif:
     mv a0, t0

@@ -6,3 +6,4 @@
 *.go
 *.svg
 *.pr.s
+.DS_Store

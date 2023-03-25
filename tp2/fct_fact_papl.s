@@ -32,7 +32,7 @@ fact_papl_fin_prologue:
     slti t0, a0, 2
     beqz t0, recursion
     li a0, 1
-    j fact_debut_epilogue
+    j fact_papl_debut_epilogue
 recursion:
     addi a0, a0, -1
     jal fact_papl

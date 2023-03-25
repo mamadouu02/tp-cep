@@ -32,7 +32,7 @@ fact_fin_prologue:
 recursion:
     addi a0, a0, -1
     jal fact
-    lw, t0, 0*4(sp)
+    lw t0, 0*4(sp)
     mul a0, a0, t0
 fact_debut_epilogue:
     lw ra, 1*4(sp)

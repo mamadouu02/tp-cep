@@ -35,6 +35,6 @@ recursion:
     lw t0, 0(sp)
     mul a0, a0, t0
 fact_debut_epilogue:
-    lw ra, 1(sp)
+    lw ra, 4(sp)
     addi sp, sp, 8
     ret

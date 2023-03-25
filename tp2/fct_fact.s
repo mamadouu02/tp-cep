@@ -22,8 +22,8 @@ FIN DU CONTEXTE */
 fact:
 /* A compléter */
     addi sp, sp, -8
-    sw ra, 1*4(sp)
-    sw a0, 0*4(sp)
+    sw ra, 4(sp)
+    sw a0, 0(sp)
 fact_fin_prologue:
     slti t0, a0, 2
     beqz t0, recursion
@@ -32,9 +32,9 @@ fact_fin_prologue:
 recursion:
     addi a0, a0, -1
     jal fact
-    lw t0, 0*4(sp)
+    lw t0, 0(sp)
     mul a0, a0, t0
 fact_debut_epilogue:
-    lw ra, 1*4(sp)
+    lw ra, 1(sp)
     addi sp, sp, 8
     ret

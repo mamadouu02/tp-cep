@@ -80,6 +80,7 @@ val_binaire_fin_prologue:
 
     lbu t0, 16(sp)
     slli t0, t0, 3
+    or a0, a0, t0
 
     lbu t0, 20(sp)
     slli t0, t0, 2

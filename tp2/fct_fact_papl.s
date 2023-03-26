@@ -41,6 +41,7 @@ recursion:
     mul t0, t2, a0
 if:
     bnez t1, endif
+    mv a0, t2
     j erreur_fact
 endif:
     mv a0, t0

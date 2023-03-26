@@ -19,19 +19,77 @@ uint8_t val_binaire(uint8_t b15, uint8_t b14, uint8_t b13, uint8_t b12,
                     uint8_t b3, uint8_t b2, uint8_t b1, uint8_t b0); */
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    val_binaire : feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    b15  : registre a0
+    b14  : registre a1
+    b13  : registre a2
+    b12  : registre a3
+    b11  : registre a4
+    b10  : registre a5
+    b9  : registre a6
+    b8  : registre a7
+    b7  : pile *(sp+0)
+    b6  : pile *(sp+4)
+    b5  : pile *(sp+8)
+    b4  : pile *(sp+12)
+    b3  : pile *(sp+16)
+    b2  : pile *(sp+20)
+    b1  : pile *(sp+24)
+    b0  : pile *(sp+28)
 FIN DU CONTEXTE */
 val_binaire:
 val_binaire_fin_prologue:
+    slli a0, a0, 15
+    slli a1, a1, 14
+    or a0, a0, a1
+
+    slli a2, a2, 13
+    or a0, a0, a2
+
+    slli a3, a3, 12
+    or a0, a0, a3
+
+    slli a4, a4, 11
+    or a0, a0, a4
+
+    slli a5, a5, 10
+    or a0, a0, a5
+
+    slli a6, a6, 9
+    or a0, a0, a6
+
+    slli a7, a7, 8
+    or a0, a0, a7
+
+    lbu t0, 0(sp)
+    slli t0, t0, 7
+    or a0, a0, t0
+
+    lbu t0, 4(sp)
+    slli t0, t0, 6
+    or a0, a0, t0
+
+    lbu t0, 8(sp)
+    slli t0, t0, 5
+    or a0, a0, t0
+
+    lbu t0, 12(sp)
+    slli t0, t0, 4
+    or a0, a0, t0
+
+    lbu t0, 16(sp)
+    slli t0, t0, 3
+
+    lbu t0, 20(sp)
+    slli t0, t0, 2
+    or a0, a0, t0
+
+    lbu t0, 24(sp)
+    slli t0, t0, 1
+    or a0, a0, t0
+
+    lbu t0, 28(sp)
+    or a0, a0, t0
 val_binaire_debut_epilogue:
     ret

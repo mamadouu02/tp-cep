@@ -20,20 +20,42 @@ void tri_min(int32_t tab[], uint32_t taille)
 /* void tri_min(int32_t tab[], uint32_t taille) */
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    tri_min : feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    tab  : registre a0
+    taille  : registre a1
+    i  : registre t0
+    j  : registre t1
+    ix_min  : registre t2
+    tmp  : registre t3
 FIN DU CONTEXTE */
 tri_min:
 tri_min_fin_prologue:
+    li t0, 0
+    addi t4, a1, -1
+loop_i:
+    sltu t5, t0, t4
+    beqz t5, endloop_i
+    mv t2, t0
+    addi t1, t0, 1
+loop_j:
+    sltu t5, t1, a1
+    beqz t5, endloop_j
+if:
+    lw t5, 0(t1)
+    lw t6, 0(t2)
+    ble t6, t5, endif
+    mv t2, t1
+endif:
+    addi t1, t1, 1
+    j loop_j
+endloop_j:
+    lw t3, 0(t0)
+    lw t5, 0(t2)
+    sw t5, 0(t0)
+    sw t3, 0(t2)
+    addi t0, t0, 1
+    j loop_i
+endloop_i:
 tri_min_debut_epilogue:
     ret
-

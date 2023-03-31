@@ -32,8 +32,8 @@ FIN DU CONTEXTE */
 tri_min:
 tri_min_fin_prologue:
     li t0, 0
-    addi t4, a1, -1
 loop_i:
+    addi t4, a1, -1
     sltu t5, t0, t4
     beqz t5, endloop_i
     mv t2, t0
@@ -42,18 +42,22 @@ loop_j:
     sltu t5, t1, a1
     beqz t5, endloop_j
 if:
-    lw t5, 0(t1)
-    lw t6, 0(t2)
-    ble t6, t5, endif
+    slli t4, t1, 2
+    slli t5, t2, 2
+    lw t4, 0(t4)
+    lw t5, 0(t5)
+    ble t5, t4, endif
     mv t2, t1
 endif:
     addi t1, t1, 1
     j loop_j
 endloop_j:
-    lw t3, 0(t0)
-    lw t5, 0(t2)
-    sw t5, 0(t0)
-    sw t3, 0(t2)
+    slli t4, t0, 2
+    slli t5, t2, 2
+    lw t3, 0(t4)
+    lw t6, 0(t5)
+    sw t6, 0(t4)
+    sw t3, 0(t5)
     addi t0, t0, 1
     j loop_i
 endloop_i:

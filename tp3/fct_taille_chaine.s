@@ -13,7 +13,7 @@ uint32_t taille_chaine(const char *chaine)
 /* uint32_t taille_chaine(const char *chaine) */
 /* DEBUT DU CONTEXTE
 Fonction :
-    taille_chaine : non feuille
+    taille_chaine : feuille
 Contexte :
     chaine  : registre a0
     taille  : registre t0

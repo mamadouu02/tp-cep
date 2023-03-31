@@ -32,9 +32,9 @@ while:
     lw t1, 4(t2)
     sw t0, 4(t2)
     mv t0, t2
-    lw t1, 0(a0)
+    sw t1, 0(a0)
     j while
 endwhile:
-    mv t2, t0
+    sw t0, 0(a0)
 inverse_liste_debut_epilogue:
     ret

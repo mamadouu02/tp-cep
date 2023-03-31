@@ -26,5 +26,17 @@ void inverse_chaine(char *ptr, uint32_t taille)
 FIN DU CONTEXTE */
 inverse_chaine:
 inverse_chaine_fin_prologue:
+    addi t1, a1, -1
+while:
+    blez t1, endwhile
+    lbu t0, 0(a0)
+    add t2, a0, t1
+    lbu t3, 0(t2)
+    sb t3, 0(a0)
+    sb t0, 0(t2)
+    addi t1, t1, -2
+    addi a0, a0, 1
+    j while
+endwhile:
 inverse_chaine_debut_epilogue:
     ret

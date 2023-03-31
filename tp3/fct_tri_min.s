@@ -34,17 +34,19 @@ tri_min_fin_prologue:
     li t0, 0
 loop_i:
     addi t4, a1, -1
-    sltu t5, t0, t4
-    beqz t5, endloop_i
+    sltu t4, t0, t4
+    beqz t4, endloop_i
     mv t2, t0
     addi t1, t0, 1
 loop_j:
-    sltu t5, t1, a1
-    beqz t5, endloop_j
+    sltu t4, t1, a1
+    beqz t4, endloop_j
 if:
     slli t4, t1, 2
-    slli t5, t2, 2
+    add t4, a0, t4
     lw t4, 0(t4)
+    slli t5, t2, 2
+    add t5, a0, t5
     lw t5, 0(t5)
     ble t5, t4, endif
     mv t2, t1
@@ -53,8 +55,10 @@ endif:
     j loop_j
 endloop_j:
     slli t4, t0, 2
-    slli t5, t2, 2
+    add t4, a0, t4
     lw t3, 0(t4)
+    slli t5, t2, 2
+    add t5, a0, t5
     lw t6, 0(t5)
     sw t6, 0(t4)
     sw t3, 0(t5)

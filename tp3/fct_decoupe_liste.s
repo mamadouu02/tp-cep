@@ -43,6 +43,32 @@ Contexte :
   fictif1.val   : pile *(sp+0)   # champ de type (int32_t)
 FIN DU CONTEXTE */
 decoupe_liste:
+    addi sp, sp, -16
 decoupe_liste_fin_prologue:
+    li t0, sp
+    sw t0, 0(a1)
+    li t0, sp+8
+    sw t0, 0(a2)
+while:
+    beqz a0, endwhile
+if:
+    lw t0, 0(a0)
+    andi t0, t0, 1
+    beqz t0, else
+    sw a0, 4(sp)
+    sw a0, 0(a1)
+    j endif
+else:
+    sw a0, 12(sp)
+    sw a0, 0(a2)
+endif:
+    lw a0, 4(a0)
+    j while
+endwhile:
+    sw zero, 4(sp)
+    sw zero, 12(sp)
+    lw a1, 4(sp)
+    lw a2, 12(sp)
 decoupe_liste_debut_epilogue:
+    addi sp, sp, 16
     ret

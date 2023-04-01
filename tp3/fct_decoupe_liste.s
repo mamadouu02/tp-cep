@@ -45,9 +45,8 @@ FIN DU CONTEXTE */
 decoupe_liste:
     addi sp, sp, -16
 decoupe_liste_fin_prologue:
-    li t0, sp
-    sw t0, 0(a1)
-    li t0, sp+8
+    sw sp, 0(a1)
+    addi t0, sp, 8
     sw t0, 0(a2)
 while:
     beqz a0, endwhile
@@ -67,8 +66,10 @@ endif:
 endwhile:
     sw zero, 4(sp)
     sw zero, 12(sp)
-    lw a1, 4(sp)
-    lw a2, 12(sp)
+    lw t0, 4(sp)
+    sw t0, 0(a1)
+    lw t0, 12(sp)
+    sw t0, 0(a2)
 decoupe_liste_debut_epilogue:
     addi sp, sp, 16
     ret

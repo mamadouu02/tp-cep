@@ -43,13 +43,13 @@ while:
     lbu t3, 0(t3)
     bne t2, t3, endwhile
     addi t0, t0, 1
-    addi t1, t1, -1
     sw t0, 4(sp)
+    addi t1, t1, -1
     sw t1, 8(sp)
     j while
 endwhile:
     sltu a0, t0, t1
-    not a0, a0
+    xori a0, a0, 1
 palin_debut_epilogue:
     lw ra, 12(sp)
     addi sp, sp, 16

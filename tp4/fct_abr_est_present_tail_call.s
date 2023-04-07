@@ -16,19 +16,35 @@ bool abr_est_present_tail_call(uint32_t val, struct noeud_t *abr)
     .globl abr_est_present_tail_call
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    abr_est_present_tail_call : feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    val  : registre a0
+    abr : registre a1
+    ra : pile *(sp+0)
 FIN DU CONTEXTE */
 abr_est_present_tail_call:
+    addi sp, sp, -4
+    sw ra, 0(sp)
 abr_est_present_tail_call_fin_prologue:
+if:
+    bnez a1, elsif1
+    li a0, 0
+    j endif
+elsif1:
+    lw t0, 0(a1)
+    bne a0, t0, elsif2
+    li a0, 1
+    j endif
+elsif2:
+    bge a0, t0, else
+    lw a1, 4(a1)
+    jal abr_est_present_tail_call
+    j endif
+else:
+    lw a1, 8(a1)
+    jal abr_est_present_tail_call
+endif:
 abr_est_present_tail_call_debut_epilogue:
+    lw ra, 0(sp)
+    addi sp, sp, 4
     ret

@@ -17,19 +17,39 @@ bool abr_est_present(uint32_t val, struct noeud_t *abr)
     .globl abr_est_present
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    abr_est_present : non feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    val  : registre a0; pile *(sp+0)
+    abr : registre a1; pile *(sp+4)
+    ra : pile *(sp+8)
 FIN DU CONTEXTE */
 abr_est_present:
+    addi sp, sp, -9
+    sb a0, 0(sp)
+    sw a1, 1(sp)
+    sw ra, 5(sp)
 abr_est_present_fin_prologue:
+if:
+    lw a1, 1(sp)
+    bnez a1, elsif1
+    li a0, 0
+    j endif
+elsif1:
+    lbu a0, 0(sp)
+    lw t0, 0(a1)
+    bne a0, t0, elsif2
+    li a0, 1
+    j endif
+elsif2:
+    bge a0, t0, else
+    lw a1, 4(a1)
+    jal abr_est_present
+    j endif
+else:
+    lw a1, 8(a1)
+    jal abr_est_present
+endif:
 abr_est_present_debut_epilogue:
+    lw ra, 5(sp)
+    addi sp, sp, 9
     ret

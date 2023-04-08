@@ -30,7 +30,7 @@ abr_vers_tab_fin_prologue:
 if:
     beqz a0, endif
     sw a0, 0(sp)
-    lw a0, 4(sp)
+    lw a0, 4(a0)
     jal abr_vers_tab
     lw a0, 0(sp)
     lw t0, ptr

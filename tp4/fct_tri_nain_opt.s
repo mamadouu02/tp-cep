@@ -28,9 +28,10 @@ Fonction :
     tri_nain_opt : feuille
 Contexte :
     i  : registre t0
-    tmp et tab[i] : registre t1
+    tmp : registre t1
     taille : registre t2
     &tab[i] : registre t3
+    tab[i] : registre t1
     tab[i+1] : registre t4
 FIN DU CONTEXTE */
 tri_nain_opt:

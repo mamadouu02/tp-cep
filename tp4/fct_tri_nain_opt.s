@@ -30,9 +30,9 @@ Contexte :
     i  : registre t0
     tmp : registre t1
     taille : registre t2
-    &tab[i] : registre t3
-    tab[i] : registre t1
-    tab[i+1] : registre t4
+    tab : registre t3
+    tab[i] : registre t4
+    tab[i+1] : registre t5
 FIN DU CONTEXTE */
 tri_nain_opt:
 tri_nain_opt_fin_prologue:
@@ -43,10 +43,11 @@ while:
 if1:
     slli t3, t0, 2
     add t3, a0, t3
-    lw t1, 0(t3)
-    lw t4, 4(t3)
-    bge t4, t1, else1
-    sw t4, 0(t3)
+    lw t4, 0(t3)
+    lw t5, 4(t3)
+    bge t5, t4, else1
+    mv t1, t4
+    sw t5, 0(t3)
     sw t1, 4(t3)
 if2:
     blez t0, endif2

@@ -16,21 +16,38 @@ void abr_vers_tab(struct noeud_t *abr)
     .globl abr_vers_tab
 /* DEBUT DU CONTEXTE
 Fonction :
-    nom_de_fonction : feuille ou non feuille
+    abr_vers_tab : non feuille
 Contexte :
-    parametre_0        : registre a0
-    parametre_1        : registre ai; pile *(sp+n)        # 2 possibilités
-    parametre_64_bits  : registres t0 / t1                # 2 registres necessaires
-    variable_locale0   : registre t0
-    variable_locale1   : pile *(sp+k)
-    ra                 : pile *(sp+p)                     # cas particulier d'un registre à sauver
-    variable_64_bits   : pile *(sp+k1) / *(sp+k2)         # 2 registres necessaires
-    variable_globale0  : memoire
-    variable_globale1  : memoire, section nom_de_section  # ex de section : .data, .bss, .text, .rodata
+    abr  : pile *(sp+0)
+    fd  : pile *(sp+4)
+    ra  : pile *(sp+8)
 FIN DU CONTEXTE */
 abr_vers_tab:
+    addi sp, sp, -12
+    sw ra, 8(sp)
 abr_vers_tab_fin_prologue:
+if:
+    beqz a0, endif
+    sw a0, 0(sp)
+    lw a0, 4(sp)
+    jal abr_vers_tab
+    lw a0, 0(sp)
+    lw t0, ptr
+    lw t1, 0(a0)
+    sw t1, 0(t0)
+    addi t0, t0, 4
+    sw t0, ptr, t1
+    lw t0, 8(a0)
+    sw t0, 4(sp)
+    jal free
+    lw a0, 4(sp)
+    jal abr_vers_tab
+endif:
 abr_vers_tab_debut_epilogue:
+    lw ra, 8(sp)
+    addi sp, sp, 12
     ret
 
-
+    .data
+    .globl ptr
+    .comm ptr, 4

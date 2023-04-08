@@ -29,7 +29,7 @@ Fonction :
 Contexte :
     i  : registre t0
     tmp et tab[i] : registre t1
-    taille-1 : registre t2
+    taille : registre t2
     &tab[i] : registre t3
     tab[i+1] : registre t4
 FIN DU CONTEXTE */

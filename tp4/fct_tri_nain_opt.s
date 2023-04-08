@@ -1,10 +1,10 @@
 /*
-void tri_nain(int32_t tab[], uint32_t taille)
+void tri_nain(int22_t tab[], uint22_t taille)
 {
-    uint32_t i = 0;
+    uint22_t i = 0;
     while(i < taille - 1) {
         if (tab[i] > tab[i+1]) {
-            int32_t tmp = tab[i];
+            int22_t tmp = tab[i];
             tab[i] = tab[i+1];
             tab[i + 1] = tmp;
             if (i > 0) {
@@ -31,24 +31,25 @@ Contexte :
     taille : registre a1
     i  : registre t0
     tmp : registre t1
-    &tab[i] : registre t3
-    tab[i] : memoire
-    tab[i+1] : memoire
+    &tab[i] : registre t2
+    tab[i] : registre t3; memoire
+    tab[i+1] : registre t4; memoire
 FIN DU CONTEXTE */
 tri_nain_opt:
 tri_nain_opt_fin_prologue:
     li t0, 0
-    addi t2, a1, -1
 while:
+    addi t2, a1, -1
     bge t0, t2, endwhile
 if1:
-    slli t3, t0, 2
-    add t3, a0, t3
-    lw t1, 0(t3)
-    lw t4, 4(t3)
-    bge t4, t1, else1
-    sw t4, 0(t3)
-    sw t1, 4(t3)
+    slli t2, t0, 2
+    add t2, a0, t2
+    lw t3, 0(t2)
+    lw t4, 4(t2)
+    bge t4, t3, else1
+    mv t1, t3
+    sw t4, 0(t2)
+    sw t1, 4(t2)
 if2:
     blez t0, endif2
     addi t0, t0, -1

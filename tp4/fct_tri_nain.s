@@ -36,7 +36,7 @@ while:
     addi t2, a1, -1
     bge t0, t2, endwhile
 if1:
-    slli t2, t0, 4
+    slli t2, t0, 2
     add t2, a0, t2
     lw t3, 0(t2)
     lw t4, 4(t2)
@@ -45,13 +45,14 @@ if1:
     sw t4, 0(t2)
     sw t1, 4(t2)
 if2:
-    bgez t0, endif2
+    blez t0, endif2
     addi t0, t0, -1
 endif2:
     j endif1
 else1:
     addi t0, t0, 1
 endif1:
+    j while
 endwhile:
 tri_nain_debut_epilogue:
     ret

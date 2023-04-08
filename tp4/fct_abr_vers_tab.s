@@ -18,7 +18,7 @@ void abr_vers_tab(struct noeud_t *abr)
 Fonction :
     abr_vers_tab : non feuille
 Contexte :
-    abr  : pile *(sp+0); memoire
+    abr  : registre a0; pile *(sp+0)
     fd  : pile *(sp+4)
     ra  : pile *(sp+8)
     ptr : memoire

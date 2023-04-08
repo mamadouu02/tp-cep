@@ -39,10 +39,13 @@ if1:
     slli t2, t0, 2
     add t2, a0, t2
     lw t3, 0(t2)
-    lw t4, 4(t2)
-    bge t4, t3, else1
-    mv t1, t3
-    sw t4, 0(t2)
+    lw t2, 4(t2)
+    bge t2, t3, else1
+    slli t2, t0, 2
+    add t2, a0, t2
+    lw t1, 0(t2)
+    lw t3, 4(t2)
+    sw t3, 0(t2)
     sw t1, 4(t2)
 if2:
     blez t0, endif2

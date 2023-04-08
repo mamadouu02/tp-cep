@@ -22,7 +22,7 @@ void tri_nain(int32_t tab[], uint32_t taille)
     .globl tri_nain
 /* DEBUT DU CONTEXTE
 Fonction :
-    tri_nain : non feuille
+    tri_nain : feuille
 Contexte :
     tab  : registre a0
     taille  : registre a1

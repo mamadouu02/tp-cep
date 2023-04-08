@@ -20,11 +20,8 @@ Fonction :
 Contexte :
     val  : registre a0
     abr : registre a1
-    ra : pile *(sp+0)
 FIN DU CONTEXTE */
 abr_est_present_tail_call:
-    addi sp, sp, -4
-    sw ra, 0(sp)
 abr_est_present_tail_call_fin_prologue:
 if:
     bnez a1, elsif1
@@ -38,13 +35,11 @@ elsif1:
 elsif2:
     bge a0, t0, else
     lw a1, 4(a1)
-    jal abr_est_present_tail_call
+    j abr_est_present_tail_call
     j endif
 else:
     lw a1, 8(a1)
-    jal abr_est_present_tail_call
+    j abr_est_present_tail_call
 endif:
 abr_est_present_tail_call_debut_epilogue:
-    lw ra, 0(sp)
-    addi sp, sp, 4
     ret

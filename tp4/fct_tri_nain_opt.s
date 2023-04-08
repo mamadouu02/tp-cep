@@ -29,7 +29,7 @@ Fonction :
 Contexte :
     i  : registre t0
     tmp  : registre t1
-    taille - 1 : registre t2
+    taille-1 : registre t2
     &tab[i] : registre t3
     tab[i] : registre t1
     tab[i+1] : registre t4
@@ -46,8 +46,8 @@ if1:
     lw t1, 0(t3)
     lw t4, 4(t3)
     bge t4, t1, else1
-    sw t4, 0(t2)
-    sw t1, 4(t2)
+    sw t4, 0(t3)
+    sw t1, 4(t3)
 if2:
     blez t0, endif2
     addi t0, t0, -1

@@ -5,7 +5,7 @@ void mon_vecteur(void)
 {
     - Sauvegarde en pile des registres utilisés dans le traitant
     - lecture des boutons poussoirs pour faire baisser l'interruption externe
-    - lecture du registre claim acquitter l'interruption au niveau du contrôleur
+    - lecture du registre claim pour acquitter l'interruption au niveau du contrôleur
     - blink = ~blink
     - ecriture de blink sur les LED (adresse 0x30000000)
     - Restauration des registres sauvegardés
@@ -38,7 +38,8 @@ mon_vecteur:
             sb   t0, 0(t1)
        En effet, %hi( ) et %lo( ) sont des macros qui sélectionnent des parties
        de la constante REG_LEDS_ADDR. On peut donc faire l'écriture en 2
-       instructions plutôt que 3.
+       instructions plutôt que 3 (rappel : li est une pseudo-instruction qui
+       s'expanse en deux instructions).
        C'est ainsi qu'est traduite la pseudo-instruction
             sb   t0, REG_LEDS_ADDR, t1
     */

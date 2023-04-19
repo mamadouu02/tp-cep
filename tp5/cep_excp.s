@@ -26,7 +26,7 @@ mon_vecteur:
     # Invoke the handler.
     csrr    a0, mcause
     li      t1, 0x80000000
-    and     t0, a0, t1   # MSB à 1 => interruption
+    and     t0, a0, t1   # bit de poids fort à 1 => interruption
     beqz    t0, pas_interruption
     jal     gestion_interruptions
     j       restaure_registres

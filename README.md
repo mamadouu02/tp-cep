@@ -70,4 +70,10 @@ Niveau 1 :
 Niveau 2 : 
 [![timer status](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/timer.svg)](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/timer.log)
 
+Niveau 5 : 
+[![exo1 status](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo1.svg)](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo1.log)
+[![exo2 status](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo2.svg)](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo2.log)
+[![exo3 status](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo3.svg)](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo3.log)
+[![exo4 status](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo4.svg)](https://CEP_Deploy.pages.ensimag.fr/CEP_TP_G3_2022_2023/EvalEP/thiongam_eval/exo4.log)
+
 

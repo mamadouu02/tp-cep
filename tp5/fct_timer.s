@@ -3,7 +3,15 @@
     .globl reveil
 /* void reveil(uint32_t delta_t); */
 reveil:
-/* A completer */
+    la t0, CLINT_TIMER
+    lw t1, 0(t0)
+    lw t2, 4(t0)
+    add t3, t1, a0
+    sltu t4, t3, t1
+    add t2, t2, t4
+    la t0, CLINT_TIMER_CMP
+    sw t3, 0(t0)
+    sw t2, 4(t0)
     ret
 
     .globl gestion_interruptions
